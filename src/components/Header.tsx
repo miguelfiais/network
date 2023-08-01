@@ -34,14 +34,12 @@ const Header = () => {
           </button>
 
           {menuIsOpen && (
-            <div
-              className="z-50 absolute top-10 left-0 w-full h-full  rounded-lg shadow-md
-            flex items-center justify-center"
+            <button
+              className="absolute top-10 left-0 z-50 text-sm font-semibold w-full h-full bg-white rounded-lg shadow-md"
+              onClick={logout}
             >
-              <button className="text-sm font-semibold w-full" onClick={logout}>
-                Logout
-              </button>
-            </div>
+              Logout
+            </button>
           )}
         </div>
       )}
