@@ -27,7 +27,7 @@ const NewPost = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (formData: FormProps) => {
-    const response = await fetch("http://localhost:3000/api/post/create", {
+    await fetch("http://localhost:3000/api/post/create", {
       method: "POST",
       body: Buffer.from(
         JSON.stringify({
@@ -36,7 +36,6 @@ const NewPost = () => {
         })
       ),
     });
-    console.log(response);
   };
 
   if (status !== "authenticated") return null;

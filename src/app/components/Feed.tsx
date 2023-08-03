@@ -9,6 +9,7 @@ const getPosts = async () => {
       content: true,
       created_at: true,
       updated_at: true,
+      comments: true,
     },
     orderBy: {
       created_at: "desc",

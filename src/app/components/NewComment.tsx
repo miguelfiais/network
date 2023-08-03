@@ -47,7 +47,7 @@ const NewComment = ({ postId }: newCommentProps) => {
   if (status !== "authenticated") return null;
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       <Image
         src={data.user?.image!}
         alt={data.user?.name!}
@@ -60,14 +60,14 @@ const NewComment = ({ postId }: newCommentProps) => {
         className="flex w-full gap-1 relative"
       >
         <textarea
-          className="w-full outline-none border rounded-md pl-1 text-xs resize-none"
+          className="w-full outline-none border rounded-md pl-1 text-xs resize-none pt-1 h-8"
           placeholder="Comente alguma coisa..."
           {...register("content")}
         />
         <p className="text-xs text-red-500 w-max absolute top-8 left-1">
           {errors.content?.message}
         </p>
-        <button type="submit">
+        <button type="submit" className="absolute right-1 top-1">
           <IoIosSend size={24} color="#3b82f6" />
         </button>
       </form>

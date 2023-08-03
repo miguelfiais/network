@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
+import Link from "next/link";
 import NewComment from "./NewComment";
 
 interface ItemPostProps {
@@ -12,6 +13,7 @@ interface ItemPostProps {
     id: string;
     content: string;
     created_at: Date;
+    comments: {}[];
   };
 }
 
@@ -34,9 +36,15 @@ const ItemPost = ({ data }: ItemPostProps) => {
         </div>
       </div>
       <div className="div">
-        <p className="mt-3">{data.content}</p>
+        <p className="mt-3 mb-1 whitespace-pre-wrap">{data.content}</p>
       </div>
-      <div className="border-b my-3"></div>
+      <Link href={`/post/${data.id}`}>
+        <p className="text-xs  text-right text-gray-400">
+          {data.comments.length} Comentários
+        </p>
+      </Link>
+      <div className="border-b mt-1 mb-3"></div>
+
       <NewComment postId={data.id} />
     </div>
   );
