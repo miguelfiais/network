@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
@@ -15,7 +16,14 @@ const Header = () => {
   const logout = () => signOut();
   return (
     <div className="container mx-auto p-5 flex items-center justify-between">
-      <Image src="/logo.png" alt="logo" width={80} height={50} />
+      <Link
+        href="/"
+        className="flex items-center gap-1 font-bold text-blue-500"
+      >
+        <Image src="/logo.png" alt="logo" width={40} height={34.29} />
+        NETWORK
+      </Link>
+
       {}
       {status === "unauthenticated" && <button onClick={login}>Login</button>}
       {status === "authenticated" && (

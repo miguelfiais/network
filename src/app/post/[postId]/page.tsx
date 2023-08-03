@@ -29,7 +29,7 @@ const getPost = async (postId: string) => {
 const PostPage = async ({ params }: { params: { postId: string } }) => {
   const data = await getPost(params.postId);
   return (
-    <div className=" bg-gray-100 h-[calc(100vh-88.78px)] overflow-auto">
+    <div className=" bg-gray-100 h-[calc(100vh-74.29px)] overflow-auto">
       <div className="container mx-auto p-5">
         <div className="bg-white p-5 rounded-xl shadow-md">
           <div className="flex items-center gap-3">
