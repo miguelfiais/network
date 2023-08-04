@@ -47,6 +47,7 @@ model User {
   sessions      Session[]
   posts         Post[]
   comments      Comment[]
+  likes         Like[]
 }
 
 model VerificationToken {
@@ -60,6 +61,7 @@ model VerificationToken {
 model Post {
   id         String    @id @default(uuid())
   content    String
+  likes      Like[]
   comments   Comment[]
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
@@ -76,4 +78,15 @@ model Comment {
   userEmail  String
   Post       Post     @relation(fields: [postId], references: [id])
   postId     String
+}
+
+model Like {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  Post      Post   @relation(fields: [postId], references: [id])
+  postId    String
+  User      User   @relation(fields: [userEmail], references: [email])
+  userEmail String
 }
