@@ -1,3 +1,4 @@
+import LikePost from "@/app/components/LikePost";
 import NewComment from "@/app/components/NewComment";
 import { prisma } from "@/lib/prisma";
 import { format } from "date-fns";
@@ -13,6 +14,7 @@ const getPost = async (postId: string) => {
       User: true,
       content: true,
       created_at: true,
+      likes: true,
       comments: {
         select: {
           User: true,
@@ -47,14 +49,18 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
               </p>
             </div>
           </div>
-          <p className="mt-3 whitespace-pre-wrap">{data?.content}</p>
-          <p className="text-xs text-right text-gray-400 border-t pt-1 pb-2 my-3">
-            {data?.comments.length} Comentários
-          </p>
+          <p className="mt-3 mb-1 whitespace-pre-wrap">{data?.content}</p>
+
+          <div className="flex items-center justify-between mt-3">
+            <LikePost postId={params.postId} liked={data?.likes!} />
+            <div className="flex items-center gap-3 text-xs text-gray-400">
+              <p>{data?.likes.length}-Likes</p>
+              <p>{data?.comments.length}-Comentários</p>
+            </div>
+          </div>
           <NewComment postId={params.postId} />
-          <div className="border-t my-2"></div>
           <div>
-            <div className="flex flex-col gap-3 ">
+            <div className="flex flex-col gap-3 mt-5">
               {data?.comments.map((comment) => (
                 <div key={comment.id} className="p-1 border">
                   <div className="flex items-start gap-3">

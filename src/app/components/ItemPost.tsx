@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
 import Link from "next/link";
+import LikePost from "./LikePost";
 import NewComment from "./NewComment";
 
 interface ItemPostProps {
@@ -14,6 +15,13 @@ interface ItemPostProps {
     content: string;
     created_at: Date;
     comments: {}[];
+    likes: {
+      id: string;
+      created_at: Date;
+      updated_at: Date;
+      postId: string;
+      userEmail: string;
+    }[];
   };
 }
 
@@ -37,15 +45,16 @@ const ItemPost = ({ data }: ItemPostProps) => {
           </p>
         </div>
       </div>
-      <div className="div">
-        <p className="mt-3 mb-1 whitespace-pre-wrap">{data.content}</p>
+      <p className="mt-3 mb-1 whitespace-pre-wrap">{data.content}</p>
+      <div className="flex items-center justify-between mt-3">
+        <LikePost postId={data.id} liked={data.likes} />
+        <div className="text-xs text-gray-400 flex items-center justify-end gap-3">
+          <p>{data.likes.length}-Likes</p>
+          <Link href={`/post/${data.id}`}>
+            <p>{data.comments.length}-Comentários</p>
+          </Link>
+        </div>
       </div>
-      <Link href={`/post/${data.id}`}>
-        <p className="text-xs  text-right text-gray-400">
-          {data.comments.length} Comentários
-        </p>
-      </Link>
-      <div className="border-b mt-1 mb-3"></div>
 
       <NewComment postId={data.id} />
     </div>

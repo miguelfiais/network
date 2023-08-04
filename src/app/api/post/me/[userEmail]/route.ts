@@ -40,6 +40,7 @@ export async function GET(
       created_at: true,
       updated_at: true,
       comments: true,
+      likes: true,
     },
     orderBy: {
       created_at: "desc",

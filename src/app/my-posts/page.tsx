@@ -14,6 +14,13 @@ interface ItemPostProps {
   content: string;
   created_at: Date;
   comments: {}[];
+  likes: {
+    id: string;
+    created_at: Date;
+    updated_at: Date;
+    postId: string;
+    userEmail: string;
+  }[];
 }
 
 const MyPosts = () => {
