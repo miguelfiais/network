@@ -31,7 +31,9 @@ const ItemPost = ({ data }: ItemPostProps) => {
         <div className="flex flex-col">
           <p className="text-sm font-medium">{data.User.name}</p>
           <p className="text-xs text-gray-400 capitalize">
-            {format(data.created_at, "dd MMMM HH:mm", { locale: ptBR })}
+            {format(new Date(data.created_at), "dd MMMM HH:mm", {
+              locale: ptBR,
+            })}
           </p>
         </div>
       </div>

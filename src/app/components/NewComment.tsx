@@ -32,7 +32,7 @@ const NewComment = ({ postId }: newCommentProps) => {
   });
 
   const onSubmit = async (formData: FormProps) => {
-    await fetch("http://localhost:3000/api/comment/create", {
+    await fetch("/api/comment/create", {
       method: "POST",
       body: Buffer.from(
         JSON.stringify({

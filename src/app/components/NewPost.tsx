@@ -27,7 +27,7 @@ const NewPost = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (formData: FormProps) => {
-    await fetch("http://localhost:3000/api/post/create", {
+    await fetch("/api/post/create", {
       method: "POST",
       body: Buffer.from(
         JSON.stringify({

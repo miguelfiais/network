@@ -42,12 +42,20 @@ const Header = () => {
           </button>
 
           {menuIsOpen && (
-            <button
-              className="absolute top-10 left-0 z-50 text-sm font-semibold w-full h-full bg-white rounded-lg shadow-md"
-              onClick={logout}
-            >
-              Logout
-            </button>
+            <div className="absolute top-9 left-0 z-50 w-full bg-gray-400 p-2 flex flex-col gap-2">
+              <button
+                className=" text-sm font-semibold w-full bg-white rounded-lg shadow-md py-1 px-2"
+                onClick={logout}
+              >
+                Logout
+              </button>
+              <Link
+                href={"/my-posts"}
+                className=" text-sm font-semibold w-full bg-white rounded-lg shadow-md py-1 px-2 text-center"
+              >
+                Minhas publicações
+              </Link>
+            </div>
           )}
         </div>
       )}
