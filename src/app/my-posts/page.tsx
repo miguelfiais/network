@@ -29,7 +29,7 @@ const MyPosts = () => {
   const [posts, setPosts] = useState<ItemPostProps[]>([]);
 
   const fetchMyPosts = async () => {
-    const response = await fetch(`/api/post/me/${data?.user?.email}`);
+    const response = await fetch(`/api/post/user/${data?.user?.email}`);
     const posts = (await response.json()) as ItemPostProps[];
     setPosts(posts);
   };
