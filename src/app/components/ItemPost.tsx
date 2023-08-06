@@ -28,7 +28,7 @@ interface ItemPostProps {
 
 const ItemPost = ({ data }: ItemPostProps) => {
   return (
-    <div className="p-5 bg-white shadow-md rounded-lg mt-5 max-w-3xl mx-auto">
+    <div className="p-5 bg-white shadow-md rounded-lg mb-5 max-w-3xl mx-auto">
       <Link href={`/post/user/${data.User.id}`}>
         <div className="flex items-center gap-3">
           <Image

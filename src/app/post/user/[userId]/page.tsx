@@ -25,7 +25,7 @@ const UserPosts = async ({ params }: { params: { userId: string } }) => {
 
   return (
     <div className="bg-gray-100 h-[calc(100vh-74.29px)] overflow-y-auto">
-      <div className="container mx-auto">
+      <div className="p-5">
         {data.map((post) => (
           <ItemPost key={post.id} data={post} />
         ))}

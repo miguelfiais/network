@@ -43,7 +43,7 @@ const MyPosts = () => {
 
   return (
     <div className="bg-gray-100 h-[calc(100vh-74.29px)] overflow-y-auto">
-      <div className="container mx-auto p-5">
+      <div className="p-5">
         {posts.length > 0 &&
           posts.map((post) => <ItemPost data={post} key={post.id} />)}
       </div>
