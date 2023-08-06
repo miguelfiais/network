@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
+import Link from "next/link";
 
 const getPost = async (postId: string) => {
   const post = await prisma.post.findUnique({
@@ -64,25 +65,27 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
             <div className="flex flex-col gap-3 mt-5">
               {data?.comments.map((comment) => (
                 <div key={comment.id} className="p-1 border">
-                  <div className="flex items-start gap-3">
-                    <Image
-                      src={comment?.User.image!}
-                      alt={data?.User.name!}
-                      width={32}
-                      height={32}
-                      className="rounded-lg"
-                    />
-                    <div className="flex flex-col">
-                      <p className="text-sm font-medium">
-                        {comment?.User.name}
-                      </p>
-                      <p className="text-xs text-gray-400 capitalize">
-                        {format(comment.created_at, "dd MMMM HH:mm", {
-                          locale: ptBR,
-                        })}
-                      </p>
+                  <Link href={`/post/user/${comment.User.id}`}>
+                    <div className="flex items-start gap-3">
+                      <Image
+                        src={comment?.User.image!}
+                        alt={data?.User.name!}
+                        width={32}
+                        height={32}
+                        className="rounded-lg"
+                      />
+                      <div className="flex flex-col">
+                        <p className="text-sm font-medium">
+                          {comment?.User.name}
+                        </p>
+                        <p className="text-xs text-gray-400 capitalize">
+                          {format(comment.created_at, "dd MMMM HH:mm", {
+                            locale: ptBR,
+                          })}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                   <p className="mt-3 whitespace-pre-wrap text-sm">
                     {comment.content}
                   </p>
