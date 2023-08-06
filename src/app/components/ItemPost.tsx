@@ -8,6 +8,7 @@ import NewComment from "./NewComment";
 interface ItemPostProps {
   data: {
     User: {
+      id: string;
       name: string | null;
       image: string | null;
     };
@@ -27,31 +28,33 @@ interface ItemPostProps {
 
 const ItemPost = ({ data }: ItemPostProps) => {
   return (
-    <div className="p-5 bg-white shadow-md rounded-lg mt-5">
-      <div className="flex items-center gap-3">
-        <Image
-          src={data.User.image!}
-          alt={data.User.name!}
-          width={36}
-          height={36}
-          className="rounded-lg"
-        />
-        <div className="flex flex-col">
-          <p className="text-sm font-medium">{data.User.name}</p>
-          <p className="text-xs text-gray-400 capitalize">
-            {format(new Date(data.created_at), "dd MMMM HH:mm", {
-              locale: ptBR,
-            })}
-          </p>
+    <div className="p-5 bg-white shadow-md rounded-lg mt-5 max-w-3xl mx-auto">
+      <Link href={`/post/user/${data.User.id}`}>
+        <div className="flex items-center gap-3">
+          <Image
+            src={data.User.image!}
+            alt={data.User.name!}
+            width={36}
+            height={36}
+            className="rounded-lg"
+          />
+          <div className="flex flex-col">
+            <p className="text-sm font-medium">{data.User.name}</p>
+            <p className="text-xs text-gray-400 capitalize">
+              {format(new Date(data.created_at), "dd MMMM HH:mm", {
+                locale: ptBR,
+              })}
+            </p>
+          </div>
         </div>
-      </div>
+      </Link>
       <p className="mt-3 mb-1 whitespace-pre-wrap">{data.content}</p>
       <div className="flex items-center justify-between mt-3">
         <LikePost postId={data.id} liked={data.likes} />
         <div className="text-xs text-gray-400 flex items-center justify-end gap-3">
-          <p>{data.likes.length}-Likes</p>
+          <p>{data.likes.length} likes</p>
           <Link href={`/post/${data.id}`}>
-            <p>{data.comments.length}-Comentários</p>
+            <p>{data.comments.length} comentários</p>
           </Link>
         </div>
       </div>

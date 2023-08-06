@@ -7,6 +7,7 @@ import ItemPost from "../components/ItemPost";
 
 interface ItemPostProps {
   User: {
+    id: string;
     name: string | null;
     image: string | null;
   };

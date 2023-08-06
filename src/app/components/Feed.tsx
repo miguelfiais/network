@@ -22,7 +22,7 @@ const getPosts = async () => {
 const Feed = async () => {
   const data = await getPosts();
   return (
-    <div className="container mx-auto">
+    <div>
       {data.map((post) => (
         <ItemPost key={post.id} data={post} />
       ))}

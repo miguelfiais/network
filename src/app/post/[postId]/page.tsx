@@ -30,6 +30,7 @@ const getPost = async (postId: string) => {
 
 const PostPage = async ({ params }: { params: { postId: string } }) => {
   const data = await getPost(params.postId);
+  if (!data) return null;
   return (
     <div className=" bg-gray-100 h-[calc(100vh-74.29px)] overflow-auto">
       <div className="container mx-auto p-5">
@@ -54,8 +55,8 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
           <div className="flex items-center justify-between mt-3">
             <LikePost postId={params.postId} liked={data?.likes!} />
             <div className="flex items-center gap-3 text-xs text-gray-400">
-              <p>{data?.likes.length}-Likes</p>
-              <p>{data?.comments.length}-Comentários</p>
+              <p>{data?.likes.length} likes</p>
+              <p>{data?.comments.length} comentários</p>
             </div>
           </div>
           <NewComment postId={params.postId} />

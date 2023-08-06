@@ -41,7 +41,7 @@ const NewPost = () => {
   if (status !== "authenticated") return null;
 
   return (
-    <div className="w-full shadow-md relative p-5 rounded-xl bg-white container mx-auto">
+    <div className="w-full shadow-md relative p-5 rounded-xl bg-white mx-auto max-w-3xl">
       <h2 className="w-full pb-2 border-b mb-2 text-sm font-semibold text-gray-700">
         Publique alguma coisa
       </h2>
