@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 
 type FormProps = {
@@ -23,19 +24,28 @@ const NewPost = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
   const onSubmit = async (formData: FormProps) => {
-    await fetch("/api/post/create", {
-      method: "POST",
-      body: Buffer.from(
-        JSON.stringify({
-          email: data?.user?.email,
-          content: formData.content,
-        })
-      ),
-    });
+    await toast.promise(
+      fetch("/api/post/create", {
+        method: "POST",
+        body: Buffer.from(
+          JSON.stringify({
+            email: data?.user?.email,
+            content: formData.content,
+          })
+        ),
+      }),
+      {
+        pending: "Publicando...",
+        error: "Erro ao publicar",
+        success: "Publicado com sucesso",
+      }
+    );
+    setValue("content", "");
   };
 
   if (status !== "authenticated") return null;

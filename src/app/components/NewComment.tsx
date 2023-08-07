@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { IoIosSend } from "react-icons/io";
+import { toast } from "react-toastify";
 import * as yup from "yup";
 
 interface newCommentProps {
@@ -27,21 +28,30 @@ const NewComment = ({ postId }: newCommentProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (formData: FormProps) => {
-    await fetch("/api/comment/create", {
-      method: "POST",
-      body: Buffer.from(
-        JSON.stringify({
-          email: data?.user?.email,
-          content: formData.content,
-          postId,
-        })
-      ),
-    });
+    await toast.promise(
+      fetch("/api/comment/create", {
+        method: "POST",
+        body: Buffer.from(
+          JSON.stringify({
+            email: data?.user?.email,
+            content: formData.content,
+            postId,
+          })
+        ),
+      }),
+      {
+        pending: "Publicando...",
+        error: "Erro ao publicar comentário",
+        success: "Comentário publicado com sucesso",
+      }
+    );
+    setValue("content", "");
   };
 
   if (status !== "authenticated") return null;

@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import { NextAuthProvider } from "@/providers/auth";
+import ToastProvider from "@/providers/toast";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -20,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextAuthProvider>
-          <Header />
-          {children}
+          <ToastProvider>
+            <Header />
+            {children}
+          </ToastProvider>
         </NextAuthProvider>
       </body>
     </html>
